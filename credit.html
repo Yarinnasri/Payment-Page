@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Credit Payment Page" />
+    <link rel="icon" href="./images/credit-card-icon.png" type="image/icon type" />
+    <title>Credit Payment Page</title>
+    <link rel="stylesheet" href="credit.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="user-container">
+        <div class="same-row gap">
+          <h1>Let’s Make Payment</h1>
+          <p class="text">
+            To start your subscription, input your card details to make payment.
+            You will be redirected to your banks authorization page .
+          </p>
+        </div>
+        <form id="myForm">
+          <label for="name">Cardholder’s Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="long-input"
+            placeholder="PAULINA CHIMAROKE"
+            maxlength="31"
+            required
+          />
+          <label for="card-number">Card Number</label>
+          <div class="input-background">
+            <input
+              type="text"
+              name="card-number"
+              id="card-number"
+              class="long-input"
+              placeholder="9870 3456 7890 6473"
+              maxlength="19"
+              required
+            />
+            <img id="card-logo" />
+          </div>
+
+          <div class="same-row">
+            <div class="form-control">
+              <label for="expiry-date">Expiry</label>
+              <input
+                type="text"
+                name="expiry-date"
+                id="expiry-date"
+                class="short-input"
+                placeholder="03 / 25"
+                maxlength="7"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="cvc">CVC</label>
+              <input
+                type="number"
+                name="cvc"
+                id="cvc"
+                class="short-input"
+                placeholder="654"
+                min="0000"
+                required
+              />
+            </div>
+          </div>
+          <label for="discount-Code">Discount Code</label>
+          <div class="input-background">
+            <input
+              type="text"
+              name="discount-Code"
+              id="discount-Code"
+              placeholder="DISCOUNT-20-OFF"
+              class="long-input"
+            />
+            <button type="button" id="apply-button">Apply</button>
+          </div>
+          <p id="message"></p>
+          <!-- submit buttom -->
+          <button type="submit">Pay</button>
+        </form>
+      </div>
+      <div id="bill-container">
+        <p class="text">You’re paying,</p>
+        <p id="big-price-text">$ 450.00</p>
+        <ul id="list">
+        </ul>
+      </div>
+    </div>
+
+    <script src="credit.js"></script>
+  </body>
+</html>

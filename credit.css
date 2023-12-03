@@ -1,0 +1,359 @@
+/*       Credit inputs       */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  display: flex;
+  height: 80%;
+  max-height: 982px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: auto 0;
+}
+
+#user-container {
+  max-width: 1512px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  color: #000;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.gap {
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text {
+  color: #575757;
+  font-size: 1.125rem;
+
+  max-width: 600px;
+}
+
+form {
+  width: 500px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.same-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  color: #575757;
+  font-size: 1.125rem;
+}
+
+input {
+  box-sizing: border-box;
+  height: 55px;
+  margin: 3px 0 5px;
+  padding: 18px 22px 16px;
+
+  border-radius: 10px;
+  border: 0;
+  border-bottom: 2px solid #9563ff;
+
+  background: #eee;
+
+  color: #a175ff;
+  font-size: 1.125rem;
+}
+
+.error {
+  border-bottom: 2px solid #ff0000;
+  color: #ff0000;
+}
+
+.apply {
+  border-bottom: 2px solid #00ff00;
+  color: #00ff00;
+}
+
+.long-input {
+  width: 500px;
+}
+
+.short-input {
+  width: 200px;
+}
+
+.input-background {
+  position: relative;
+  display: inline-flex;
+}
+
+img {
+  height: 37px;
+  padding: 10px 22px 8px;
+}
+
+.input-background button {
+  padding: 18px 22px 16px;
+
+  color: #9563ff;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.input-background button,
+img {
+  background-color: #ffffff00;
+  border: none;
+
+  margin: 3px 0 5px;
+  position: absolute;
+  right: 0;
+}
+
+.input-background button:hover:enabled {
+  color: #aa83ff;
+}
+
+.input-background button:active:enabled {
+  color: black;
+}
+
+.input-background button:disabled {
+  color: #d1bbff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button[type="submit"] {
+  width: 202px;
+  height: 55px;
+  margin-top: 41px;
+
+  border-radius: 10px;
+  border: none;
+  background: #9563ff;
+
+  color: #fff;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+button[type="submit"]:hover:enabled {
+  background-color: #aa83ff;
+}
+
+button[type="submit"]:active:enabled {
+  color: black;
+}
+
+button:enabled {
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background-color: #d1bbff;
+}
+
+#message {
+  color: red;
+}
+
+/*       Item list and prices Zone       */
+#bill-container {
+  background: #f0f0f0;
+  width: 350px;
+  padding: 40px 40px 80px;
+  border-radius: 10px;
+}
+
+#bill-container .text {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#big-price-text {
+  font-size: 3.125rem;
+  font-weight: 700;
+  margin: 0 0 30px 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.item {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: 500;
+  right: 0;
+}
+
+hr {
+  stroke-width: 0.5px;
+  stroke: #747474;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1050px) {
+  #container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin: 32px 0;
+  }
+
+  #user-container {
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 550px;
+  }
+
+  form,
+  .form-control {
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .same-row {
+    align-items: center;
+  }
+
+  .text {
+    text-align: center;
+    max-width: 550px;
+  }
+
+  .short-input {
+    margin: 3px 16px 5px;
+  }
+
+  .long-input,
+  .short-input {
+    text-align: center;
+  }
+
+  input,
+  #apply-button {
+    line-height: 19.4px;
+  }
+
+  button[type="submit"] {
+    margin: 10px 0 20px;
+  }
+  #big-price-text {
+    margin: 0 auto 30px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .text {
+    font-size: 0.8rem;
+    /* width: 300px; */
+  }
+
+  form,
+  .long-input,
+  .text {
+    width: 280px;
+  }
+
+  .short-input {
+    width: 120px;
+  }
+
+  label,
+  input,
+  #apply-button {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 25.4px;
+  }
+
+  #discount-Code,
+  #card-number {
+    text-align: left;
+  }
+
+  input,
+  button[type="submit"] {
+    height: 45px;
+  }
+
+  input,
+  #apply-button {
+    padding: 10px 22px 8px;
+  }
+
+  img {
+    padding: 4px 8px;
+  }
+
+  #message {
+    font-size: 0.8125rem;
+  }
+
+  #bill-container {
+    width: 260px;
+    padding: 15px 15px 30px;
+  }
+
+  #big-price-text {
+    font-size: 2rem;
+    margin: 0 auto 15px;
+  }
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  .item,
+  .price {
+    font-size: 0.8rem;
+  }
+}
