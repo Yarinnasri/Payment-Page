@@ -34,7 +34,10 @@ submitButton.addEventListener("click", (event) => {
       item.stock = Number(item.stock) - Number(item.quantity);
     });
     sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
-    window.location.href = "https://yarinnasri.github.io/Shop-Page/";
+
+    setTimeout(() => {
+      window.location.href = "https://yarinnasri.github.io/Shop-Page/";
+    }, 0);
   }
 });
 
