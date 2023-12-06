@@ -22,15 +22,15 @@ let isApplied = false;
 discountCodeInput.classList.remove("apply");
 console.clear();
 
-let cartArray;
-window.addEventListener("message", (event) => {
-  if (event.origin === "https://yarinnasri.github.io/Shop-Page/index.html") {
-    cartArray = JSON.parse(event.data);
-    console.log("message: " + cartArray);
-  }
-});
+// let cartArray;
+// window.addEventListener("message", (event) => {
+//   if (event.origin === "https://yarinnasri.github.io/Shop-Page/index.html") {
+//     cartArray = JSON.parse(event.data);
+//     console.log("message: " + cartArray);
+//   }
+// });
 
-// let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
+let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
 createItemList();
 updateItemList();
 
@@ -39,15 +39,16 @@ submitButton.addEventListener("click", (event) => {
   event.preventDefault();
   alert("Payment information is valid, thank you for buying here!");
   if (cartArray) {
+    console.log("updating stock!");
     cartArray.forEach((item) => {
       item.stock = Number(item.stock) - Number(item.quantity);
     });
-    // sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
+    sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
 
-    window.postMessage(
-      JSON.stringify(cartArray),
-      "https://yarinnasri.github.io/Shop-Page/index.html"
-    );
+    // window.postMessage(
+    //   JSON.stringify(cartArray),
+    //   "https://yarinnasri.github.io/Shop-Page/index.html"
+    // );
 
     setTimeout(() => {
       window.location.href =
