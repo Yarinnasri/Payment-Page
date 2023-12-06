@@ -26,6 +26,7 @@ let cartArray;
 window.addEventListener("message", (event) => {
   if (event.origin === "https://yarinnasri.github.io/Shop-Page/index.html") {
     cartArray = JSON.parse(event.data);
+    console.log("message: " + cartArray);
   }
 });
 
@@ -123,7 +124,6 @@ expiryDateInput.addEventListener("input", () => {
   // // Upadate for validation later
   inputMonth = numbersOnly.slice(0, 2);
   inputYear = numbersOnly.slice(2, 4);
-  console.log(`month: ${inputMonth}, year: ${inputYear}`);
   validationsArr[2] = validateExpiryDate(inputMonth, inputYear);
   checkAllValidations(2);
 });
@@ -196,7 +196,6 @@ function validateExpiryDate(month, year) {
   const now = new Date();
   const currentMonth = now.getMonth() + 1;
   const currentYear = now.getFullYear() % 100;
-  console.log(`current month: ${currentMonth} current year: ${currentYear}`);
 
   const inputMonthInt = parseInt(month, 10);
   const inputYearInt = parseInt(year, 10);
