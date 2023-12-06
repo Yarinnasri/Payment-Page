@@ -44,7 +44,7 @@ submitButton.addEventListener("click", (event) => {
       item.stock = Number(item.stock) - Number(item.quantity);
     });
     sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
-
+    sessionStorage.setItem("payedCart", JSON.stringify(true));
     // window.postMessage(
     //   JSON.stringify(cartArray),
     //   "https://yarinnasri.github.io/Shop-Page/index.html"
