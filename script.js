@@ -21,7 +21,15 @@ const validationsArr = [false, false, false, false, true];
 let isApplied = false;
 discountCodeInput.classList.remove("apply");
 console.clear();
-let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
+
+let cartArray;
+window.addEventListener("message", (event) => {
+  if (event.origin === "https://yarinnasri.github.io/Shop-Page/index.html") {
+    cartArray = JSON.parse(event.data);
+  }
+});
+
+// let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
 createItemList();
 updateItemList();
 
@@ -33,10 +41,16 @@ submitButton.addEventListener("click", (event) => {
     cartArray.forEach((item) => {
       item.stock = Number(item.stock) - Number(item.quantity);
     });
-    sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
+    // sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
+
+    window.postMessage(
+      JSON.stringify(cartArray),
+      "https://yarinnasri.github.io/Shop-Page/index.html"
+    );
 
     setTimeout(() => {
-      window.location.href = "https://yarinnasri.github.io/Shop-Page/";
+      window.location.href =
+        "https://yarinnasri.github.io/Shop-Page/index.html";
     }, 0);
   }
 });
