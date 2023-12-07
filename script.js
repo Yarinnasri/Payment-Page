@@ -24,11 +24,11 @@ console.clear();
 
 let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
 let canDiscount = true;
-let usersArray, activeUser, permissions;
+let usersArray, activeUser, activeUserDetails, permissions;
 if (cartArray) {
   usersArray = JSON.parse(sessionStorage.getItem("users")); //[Array(2), Array(2)]
   activeUser = sessionStorage.getItem("loggedInUserEmail"); //'admin123@gmail.com'
-  let activeUserDetails = usersArray.find((user) => user[0] === activeUser);
+  activeUserDetails = usersArray.find((user) => user[0] === activeUser);
   permissions = new Set(activeUserDetails[1].permissions);
   if (!permissions.has("DISCOUNT_20_OFF")) {
     canDiscount = false;
@@ -45,7 +45,8 @@ submitButton.addEventListener("click", (event) => {
   if (cartArray) {
     // will remove 20% discount, can not use it again next time
     if (discountCodeInput.value === "DISCOUNT-20-OFF") {
-      permissions.remove("DISCOUNT_20_OFF");
+      permissions.delete("DISCOUNT_20_OFF");
+      activeUserDetails.permissions.remove();
       const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
       usersArray[userIndex][1].permissions = permissions;
       sessionStorage.setItem("users", JSON.stringify(usersArray));
@@ -312,7 +313,7 @@ function createItemList() {
     cartArray.forEach((item) => {
       listHtml += `<li>
       <p class="item">${item.quantity}x ${item.name}</p>
-      <p class="price">$ ${item.price * item.quantity}</p>
+      <p class="price">$ ${(item.price * item.quantity).toFixed(2)}</p>
     </li>`;
     });
   } else {
