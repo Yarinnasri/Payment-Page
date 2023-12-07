@@ -45,9 +45,9 @@ submitButton.addEventListener("click", (event) => {
   if (cartArray) {
     // will remove 20% discount, can not use it again next time
     if (discountCodeInput.value === "DISCOUNT-20-OFF") {
-      activeUserDetails[1].permissions.remove("DISCOUNT_20_OFF");
+      permissions.remove("DISCOUNT_20_OFF");
       const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
-      usersArray[userIndex][1].permissions = activeUserDetails[1].permissions;
+      usersArray[userIndex][1].permissions = permissions;
       sessionStorage.setItem("users", JSON.stringify(usersArray));
     }
     // update shop stock values to updade local storage and UI later
@@ -312,7 +312,7 @@ function createItemList() {
     cartArray.forEach((item) => {
       listHtml += `<li>
       <p class="item">${item.quantity}x ${item.name}</p>
-      <p class="price">$ ${item.price}</p>
+      <p class="price">$ ${item.price * item.quantity}</p>
     </li>`;
     });
   } else {
