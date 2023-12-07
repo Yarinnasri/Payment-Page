@@ -22,15 +22,19 @@ let isApplied = false;
 discountCodeInput.classList.remove("apply");
 console.clear();
 
-// let cartArray;
-// window.addEventListener("message", (event) => {
-//   if (event.origin === "https://yarinnasri.github.io/Shop-Page/index.html") {
-//     cartArray = JSON.parse(event.data);
-//     console.log("message: " + cartArray);
-//   }
-// });
-
 let cartArray = JSON.parse(sessionStorage.getItem("shopping-cart"));
+let canDiscount = true;
+let usersArray, activeUser, permissions;
+if (cartArray) {
+  usersArray = JSON.parse(sessionStorage.getItem("users")); //[Array(2), Array(2)]
+  activeUser = sessionStorage.getItem("loggedInUserEmail"); //'admin123@gmail.com'
+  let activeUserDetails = usersArray.find((user) => user[0] === activeUser);
+  permissions = new Set(activeUserDetails[1].permissions);
+  if (!permissions.has("DISCOUNT_20_OFF")) {
+    canDiscount = false;
+  }
+}
+
 createItemList();
 updateItemList();
 
@@ -39,16 +43,19 @@ submitButton.addEventListener("click", (event) => {
   event.preventDefault();
   alert("Payment information is valid, thank you for buying here!");
   if (cartArray) {
-    console.log("updating stock!");
+    // will remove 20% discount, can not use it again next time
+    if (discountCodeInput.value === "DISCOUNT-20-OFF") {
+      activeUserDetails[1].permissions.remove("DISCOUNT_20_OFF");
+      const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
+      usersArray[userIndex][1].permissions = activeUserDetails[1].permissions;
+      sessionStorage.setItem("users", JSON.stringify(usersArray));
+    }
+    // update shop stock values to updade local storage and UI later
     cartArray.forEach((item) => {
       item.stock = Number(item.stock) - Number(item.quantity);
     });
     sessionStorage.setItem("shopping-cart", JSON.stringify(cartArray));
     sessionStorage.setItem("payedCart", JSON.stringify(true));
-    // window.postMessage(
-    //   JSON.stringify(cartArray),
-    //   "https://yarinnasri.github.io/Shop-Page/index.html"
-    // );
 
     setTimeout(() => {
       window.location.href =
@@ -237,11 +244,16 @@ function validateDiscountCode(discountCode) {
     regex3.test(cleanInputArr[2]);
   if (isValid || !discountCode) {
     if (isValid) {
-      discountCodeInput.classList.add("apply");
-      discountCodeInput.disabled = true;
-      applyBtn.disabled = true;
-      isApplied = true;
-      updateItemList();
+      if (discountCode === "DISCOUNT-20-OFF") {
+        discountCodeInput.classList.add("apply");
+        discountCodeInput.disabled = true;
+        applyBtn.disabled = true;
+        isApplied = true;
+        updateItemList();
+      } else {
+        alert("Code was used, please enter a new valid code.");
+        return false;
+      }
     }
     return true;
   }
