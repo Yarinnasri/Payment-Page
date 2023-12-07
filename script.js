@@ -44,12 +44,12 @@ submitButton.addEventListener("click", (event) => {
   alert("Payment information is valid, thank you for buying here!");
   if (cartArray) {
     // will remove 20% discount, can not use it again next time
-    if (discountCodeInput.value === "DISCOUNT-20-OFF") {
-      permissions.delete("DISCOUNT_20_OFF");
-      const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
-      usersArray[userIndex][1].permissions = permissions;
-      sessionStorage.setItem("users", JSON.stringify(usersArray));
-    }
+    // if (discountCodeInput.value === "DISCOUNT-20-OFF") {
+    //   permissions.delete("DISCOUNT_20_OFF");
+    //   const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
+    //   usersArray[userIndex][1].permissions = permissions;
+    //   sessionStorage.setItem("users", JSON.stringify(usersArray));
+    // }
     // update shop stock values to updade local storage and UI later
     cartArray.forEach((item) => {
       item.stock = Number(item.stock) - Number(item.quantity);
