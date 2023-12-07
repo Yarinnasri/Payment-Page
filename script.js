@@ -46,7 +46,6 @@ submitButton.addEventListener("click", (event) => {
     // will remove 20% discount, can not use it again next time
     if (discountCodeInput.value === "DISCOUNT-20-OFF") {
       permissions.delete("DISCOUNT_20_OFF");
-      activeUserDetails.permissions.remove();
       const userIndex = usersArray.findIndex((user) => user[0] === activeUser);
       usersArray[userIndex][1].permissions = permissions;
       sessionStorage.setItem("users", JSON.stringify(usersArray));
